@@ -1,8 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
   renderTodos();
 });
 
-$("#todoSubmit").on("click", function() {
+$("#todoSubmit").on("click", function () {
   const todoText = $("#todoText").val();
   $("#todoText").val("");
   $.ajax({
@@ -23,6 +23,8 @@ renderTodos = () => {
     console.log(todos);
 
     todos.forEach(todo => {
+      const dateCreated = todo.date;
+      console.log(dateCreated);
       $("#todoContainer").prepend(
         `
         <div class="col-sm-12">
@@ -30,6 +32,7 @@ renderTodos = () => {
             <div class="card-body">
               <div class="text-center">
                 <p>${todo.text}<p>
+                <p>${todo.date}</p>
                 <button id="editBtn" data-id=${todo._id} type="button" style="width:150px" class="btn btn-outline-success">Edit</button>
                 <button id="deleteBtn" data-id=${todo._id} type="button" style="width:150px" class="btn btn-outline-danger">Delete</button>
               </div>
@@ -42,13 +45,13 @@ renderTodos = () => {
   });
 };
 
-$(document).on("click", "#editBtn", function() {
+$(document).on("click", "#editBtn", function () {
   const id = $(this).attr("data-id");
   console.log(id);
   window.location.href = `/edit?id=${id}`;
 });
 
-$(document).on("click", "#deleteBtn", function() {
+$(document).on("click", "#deleteBtn", function () {
   const id = $(this).attr("data-id");
   console.log(id);
   window.location.href = `/delete?id=${id}`;

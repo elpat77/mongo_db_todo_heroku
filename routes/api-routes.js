@@ -5,14 +5,16 @@ const db = require("../models");
 router.get("/all", (req, res) => {
   db.Todo.find().then(todos => {
     res.send(todos);
-  });
+  })
 });
 
+//We can find a specific todo based on the id; access the db object, then finds the parameeter by id
 router.get("/find/:id", (req, res) => {
   db.Todo.find({ _id: req.params.id }).then(foundTodo => {
     res.send(foundTodo);
   });
 });
+
 
 router.post("/new", (req, res) => {
   db.Todo.create({ text: req.body.text }).then(newTodo => {

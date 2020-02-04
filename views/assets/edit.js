@@ -5,7 +5,7 @@ renderTodo = (id, cb) => {
   }).then(todo => cb(todo));
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
   const urlParams = new URLSearchParams(window.location.search);
   const todoId = urlParams.get("id");
   console.log(todoId);
